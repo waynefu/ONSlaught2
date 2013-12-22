@@ -34,6 +34,7 @@
 #include "Input.h"
 #include "Video.h"
 
+std::auto_ptr<ONSlaught::Kernel> ONSlaught::global_kernel;
 
 ONSlaught::Kernel::Kernel(){
 }
@@ -41,15 +42,15 @@ ONSlaught::Kernel::Kernel(){
 void ONSlaught::Kernel::run(){
 	while (1){
 		auto input = this->input->get();
+
 		for (auto i = this->delegates.begin(); i != this->delegates.end();){
-			if (!i(input)){
-				auto copy = i;
-				++copy;
-				this->delegates.erase(i);
-				i = copy;
+			if (!(*i)(input)){
+				auto copy = i++;
+				this->delegates.erase(copy);
 			}else
 				++i;
 		}
+
 		this->video->draw();
 	}
 }

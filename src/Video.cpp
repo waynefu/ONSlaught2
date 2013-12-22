@@ -35,12 +35,15 @@
 
 
 ONSlaught::Video::Video(unsigned width, unsigned height){
+	//TODO
 }
 
 ONSlaught::Video::~Video(){
+	//TODO
 }
 
 void ONSlaught::Video::draw(){
 	AutoMutex am(this->draw_lock);
+	//TODO
 }
 

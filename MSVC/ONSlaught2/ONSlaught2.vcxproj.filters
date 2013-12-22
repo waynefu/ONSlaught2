@@ -36,6 +36,9 @@
     <ClInclude Include="..\..\..\..\..\Cpp\ONSlaught2\ONSlaught2\src\SimpleTypes.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Cpp\ONSlaught2\ONSlaught2\src\Coroutines.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="../../src/ONSlaught2.cpp">
@@ -54,6 +57,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\..\..\Cpp\ONSlaught2\ONSlaught2\src\Thread.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Cpp\ONSlaught2\ONSlaught2\src\Coroutines.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
