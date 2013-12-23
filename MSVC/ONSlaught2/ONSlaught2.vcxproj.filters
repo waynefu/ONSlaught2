@@ -24,9 +24,6 @@
     <ClInclude Include="..\..\..\..\..\Cpp\ONSlaught2\ONSlaught2\src\Video.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\..\Cpp\ONSlaught2\ONSlaught2\src\Input.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\..\..\Cpp\ONSlaught2\ONSlaught2\src\Thread.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -37,6 +34,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\..\Cpp\ONSlaught2\ONSlaught2\src\Coroutines.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Cpp\ONSlaught2\ONSlaught2\src\ScriptInterpreter.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Cpp\ONSlaught2\ONSlaught2\src\UserInput.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -50,9 +53,6 @@
     <ClCompile Include="..\..\..\..\..\Cpp\ONSlaught2\ONSlaught2\src\Kernel.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\Cpp\ONSlaught2\ONSlaught2\src\Input.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\..\..\Cpp\ONSlaught2\ONSlaught2\src\Video.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -60,6 +60,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\..\..\Cpp\ONSlaught2\ONSlaught2\src\Coroutines.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Cpp\ONSlaught2\ONSlaught2\src\ScriptInterpreter.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Cpp\ONSlaught2\ONSlaught2\src\UserInput.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

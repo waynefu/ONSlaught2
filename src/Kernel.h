@@ -34,16 +34,17 @@
 #ifndef KERNEL_H
 #define KERNEL_H
 
-#include "Input.h"
-#include <list>
+#include "Thread.h"
+#include "UserInput.h"
 
 namespace ONSlaught{
 
 class Video;
 class Audio;
-class Input;
+class UserInput;
 class ScriptInterpreter;
 
+class CrossThreadAction;
 class InteractiveObject;
 
 class InteractionDelegate{
@@ -60,12 +61,19 @@ public:
 class Kernel{
 	std::auto_ptr<Video> video;
 	std::auto_ptr<Audio> audio;
-	std::auto_ptr<Input> input;
+	std::auto_ptr<UserInput> input;
 	std::auto_ptr<ScriptInterpreter> interpreter;
 	std::list<InteractionDelegate> delegates;
+	std::deque<CrossThreadAction *> actions;
+	Mutex actions_mutex,
+		delegates_mutex;
+
+	void perform_actions();
+	void run_delegates(const event_queue_t &);
 public:
 	Kernel();
 	void run();
+	void schedule(CrossThreadAction *);
 };
 
 extern std::auto_ptr<Kernel> global_kernel;

@@ -31,17 +31,21 @@
 #pragma once
 #endif
 
-#ifndef INPUT_H
-#define INPUT_H
+#ifndef USERINPUT_H
+#define USERINPUT_H
 
 namespace ONSlaught{
 
 typedef std::vector<SDL_Event> event_queue_t;
 
-class Input{
-	bool skip_state;
+class UserInput{
+	std::vector<SDL_Joystick *> joysticks;
+	void transform_event(SDL_Event &e);
 public:
-	Input();
+	UserInput();
+	~UserInput();
+	void setup_joysticks();
+	void free_joysticks();
 	event_queue_t get();
 	bool get_skip_state();
 };

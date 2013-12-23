@@ -31,47 +31,79 @@
 #ifndef PRECOMPILED_HEADERS_ARE_AVAILABLE
 #endif
 #include "UserInput.h"
-#include "Video.h"
-#include "Kernel.h"
 
-using ONSlaught::Kernel;
+using ONSlaught::UserInput;
+using ONSlaught::event_queue_t;
 
-std::auto_ptr<ONSlaught::Kernel> ONSlaught::global_kernel;
-
-Kernel::Kernel(){
+UserInput::UserInput(){
+	this->setup_joysticks();
 }
 
-void Kernel::perform_actions(){
-	AutoMutex am(this->actions_mutex);
-	while (this->actions.size()){
-		(*this->actions.front())();
-		this->actions.pop_front();
-	}
+UserInput::~UserInput(){
+	this->free_joysticks();
 }
 
-void Kernel::run_delegates(const ONSlaught::event_queue_t &input){
-	AutoMutex am(this->delegates_mutex);
-	for (auto i = this->delegates.begin(); i != this->delegates.end();){
-		if (!(*i)(input)){
-			auto copy = i++;
-			this->delegates.erase(copy);
-		}else
-			++i;
+event_queue_t UserInput::get(){
+	event_queue_t ret;
+	SDL_Event event;
+	while (SDL_PollEvent(&event)){
+		this->transform_event(event);
+		ret.push_back(event);
 	}
+	return ret;
 }
 
-void Kernel::run(){
-	while (1){
-		this->perform_actions();
-		this->run_delegates(this->input->get());
-		this->video->draw();
-	}
+template <typename T>
+inline T abs(T x){
+	return x < 0 ? -x : x;
 }
 
-void Kernel::schedule(ONSlaught::CrossThreadAction *cta){
-	{
-		AutoMutex am(this->actions_mutex);
-		this->actions.push_back(cta);
+bool decode_joystick_event(SDL_Event &event, std::vector<SDL_Joystick *> &joysticks){
+	if (event.type == SDL_JOYAXISMOTION){
+		int value = event.jaxis.value;
+		if (abs(value) < (1<<14))
+			return 0;
+		int axis = 0;
+		if (SDL_JoystickNumAxes(joysticks[event.jaxis.which]) >= 2)
+			axis = 1;
+		if (event.jaxis.axis != axis)
+			return 0;
+		SDL_Keycode key = (value < 0) ? SDLK_UP : SDLK_DOWN;
+		event.type = SDL_KEYDOWN;
+		event.key.keysym.sym = key;
+	}else if (event.type == SDL_JOYBUTTONDOWN){
+		if (!event.jbutton.state || event.jbutton.button >= 5)
+			return 0;
+		static SDL_Keycode buttons[] = {
+			SDLK_RETURN,
+			SDLK_ESCAPE,
+			SDLK_PERIOD,
+			SDLK_f,
+			SDLK_F12
+		};
+		SDL_Keycode key = buttons[event.jbutton.button];
+		event.type = SDL_KEYDOWN;
+		event.key.keysym.sym = key;
 	}
-	cta->wait();
+	return 1;
+}
+
+void UserInput::setup_joysticks(){
+	this->free_joysticks();
+	int n = SDL_NumJoysticks();
+	for (int a = 0; a < n; a++){
+		SDL_Joystick *j = SDL_JoystickOpen(a);
+		if (j && (SDL_JoystickNumAxes(j) < 1 || SDL_JoystickNumButtons(j) < 2)){
+			SDL_JoystickClose(j);
+			j = 0;
+		}
+		this->joysticks.push_back(j);
+	}
+	SDL_JoystickEventState(SDL_ENABLE);
+}
+
+void UserInput::free_joysticks(){
+	for (auto j : this->joysticks)
+		SDL_JoystickClose(j);
+	this->joysticks.clear();
 }

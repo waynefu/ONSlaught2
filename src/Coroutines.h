@@ -34,6 +34,8 @@
 #ifndef COROUTINES_H
 #define COROUTINES_H
 
+namespace ONSlaught{
+
 #if defined USE_BOOST_COROUTINES
 typedef void *coroutine_t;
 #endif
@@ -193,4 +195,6 @@ public:
 		this->metalist.push(p);
 	}
 };
+
+}
 #endif

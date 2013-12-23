@@ -27,73 +27,7 @@
 * OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-#ifdef _MSC_VER
-#pragma once
+#include "stdafx.h"
+#ifndef PRECOMPILED_HEADERS_ARE_AVAILABLE
 #endif
-
-#ifndef THREAD_H
-#define THREAD_H
-
-namespace ONSlaught{
-
-#if defined USE_BOOST_MUTEX
-class Mutex{
-	boost::recursive_mutex m;
-	Mutex(const Mutex &){}
-	void operator=(const Mutex &){}
-public:
-	Mutex(){}
-	void lock(){
-		this->m.lock();
-	}
-	void unlock(){
-		this->m.unlock();
-	}
-};
-
-class AutoMutex{
-	Mutex &m;
-	AutoMutex(AutoMutex &m): m(m.m){}
-	void operator=(const AutoMutex &){}
-public:
-	AutoMutex(Mutex &m): m(m){
-		this->m.lock();
-	}
-	~AutoMutex(){
-		this->m.unlock();
-	}
-};
-#endif //defined USE_BOOST_MUTEX
-
-struct EventImpl;
-
-class Event{
-	EventImpl *impl;
-public:
-	Event();
-	~Event();
-	void set();
-	void wait();
-};
-
-class CrossThreadAction{
-	bool sync;
-	Event function_finished_event;
-	virtual void perform() = 0;
-public:
-	CrossThreadAction(bool sync): sync(sync){}
-	virtual ~CrossThreadAction(){}
-	void operator()(){
-		this->perform();
-		if (this->sync)
-			this->function_finished_event.set();
-	}
-	void wait(){
-		if (this->sync)
-			this->function_finished_event.wait();
-	}
-};
-
-}
-
-#endif
+#include "ScriptInterpreter.h"

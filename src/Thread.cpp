@@ -31,3 +31,57 @@
 #ifndef PRECOMPILED_HEADERS_ARE_AVAILABLE
 #endif
 #include "Thread.h"
+
+#define NOTIFY_ONE 0
+
+using ONSlaught::Event;
+using ONSlaught::EventImpl;
+
+#if defined USE_BOOST_MUTEX
+template <typename T>
+class BoostEvent{
+	bool ready;
+	T var;
+	boost::condition_variable cv;
+	boost::mutex mutex;
+public:
+	BoostEvent(): ready(0){}
+	void set(const T &var){
+		boost::unique_lock<boost::mutex> lock(this->mutex);
+		this->var = var;
+		this->ready = 1;
+#if NOTIFY_ONE
+		this->cv.notify_one();
+#else
+		this->cv.notify_all();
+#endif
+	}
+	const T &wait(){
+		boost::unique_lock<boost::mutex> lock(this->mutex);
+		while (!this->ready)
+			this->cv.wait(lock);
+		this->ready = 0;
+		return this->var;
+	}
+};
+
+struct EventImpl{
+	BoostEvent<bool> event;
+};
+
+Event::Event(){
+	this->impl = new EventImpl;
+}
+
+Event::~Event(){
+	delete this->impl;
+}
+
+void Event::set(){
+	this->impl->event.set(1);
+}
+
+void Event::wait(){
+	this->impl->event.wait();
+}
+#endif

@@ -7,6 +7,8 @@
 
 #include <memory>
 #include <vector>
+#include <deque>
+#include <list>
 #include <SDL.h>
 
 #ifdef USE_BOOST_STUFF

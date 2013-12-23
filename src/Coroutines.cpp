@@ -32,6 +32,15 @@
 #endif
 #include "coroutines.h"
 
+using ONSlaught::InterCoroutineProcedureCallList;
+using ONSlaught::InterCoroutineProcedureCall;
+using ONSlaught::CoroutineMetaList;
+using ONSlaught::InternalErrorException;
+using ONSlaught::Coroutine;
+using ONSlaught::CoroutineTask;
+using ONSlaught::coroutine_entry_point_t;
+using ONSlaught::coroutine_t;
+
 #if defined USE_BOOST_COROUTINES
 #include "boost_coroutines.cpp"
 #endif

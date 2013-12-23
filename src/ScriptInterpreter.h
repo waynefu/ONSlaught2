@@ -27,7 +27,18 @@
 * OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-#include "stdafx.h"
-#ifndef PRECOMPILED_HEADERS_ARE_AVAILABLE
+#ifdef _MSC_VER
+#pragma once
 #endif
-#include "Input.h"
+
+#ifndef SCRIPTINTERPRETER_H
+#define SCRIPTINTERPRETER_H
+
+class ScriptInterpreter{
+public:
+	ScriptInterpreter();
+	~ScriptInterpreter();
+	void start();
+};
+
+#endif

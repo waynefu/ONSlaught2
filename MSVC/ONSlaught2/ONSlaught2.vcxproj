@@ -151,9 +151,10 @@
     <ClInclude Include="../../src/stdafx.h" />
     <ClInclude Include="..\..\..\..\..\Cpp\ONSlaught2\ONSlaught2\src\config.h" />
     <ClInclude Include="..\..\..\..\..\Cpp\ONSlaught2\ONSlaught2\src\Coroutines.h" />
-    <ClInclude Include="..\..\..\..\..\Cpp\ONSlaught2\ONSlaught2\src\Input.h" />
+    <ClInclude Include="..\..\..\..\..\Cpp\ONSlaught2\ONSlaught2\src\ScriptInterpreter.h" />
     <ClInclude Include="..\..\..\..\..\Cpp\ONSlaught2\ONSlaught2\src\SimpleTypes.h" />
     <ClInclude Include="..\..\..\..\..\Cpp\ONSlaught2\ONSlaught2\src\Thread.h" />
+    <ClInclude Include="..\..\..\..\..\Cpp\ONSlaught2\ONSlaught2\src\UserInput.h" />
     <ClInclude Include="..\..\..\..\..\Cpp\ONSlaught2\ONSlaught2\src\Video.h" />
   </ItemGroup>
   <ItemGroup>
@@ -165,9 +166,10 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\..\..\..\..\Cpp\ONSlaught2\ONSlaught2\src\Coroutines.cpp" />
-    <ClCompile Include="..\..\..\..\..\Cpp\ONSlaught2\ONSlaught2\src\Input.cpp" />
     <ClCompile Include="..\..\..\..\..\Cpp\ONSlaught2\ONSlaught2\src\Kernel.cpp" />
+    <ClCompile Include="..\..\..\..\..\Cpp\ONSlaught2\ONSlaught2\src\ScriptInterpreter.cpp" />
     <ClCompile Include="..\..\..\..\..\Cpp\ONSlaught2\ONSlaught2\src\Thread.cpp" />
+    <ClCompile Include="..\..\..\..\..\Cpp\ONSlaught2\ONSlaught2\src\UserInput.cpp" />
     <ClCompile Include="..\..\..\..\..\Cpp\ONSlaught2\ONSlaught2\src\Video.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
