@@ -43,22 +43,7 @@ UserInput::~UserInput(){
 	this->free_joysticks();
 }
 
-event_queue_t UserInput::get(){
-	event_queue_t ret;
-	SDL_Event event;
-	while (SDL_PollEvent(&event)){
-		this->transform_event(event);
-		ret.push_back(event);
-	}
-	return ret;
-}
-
-template <typename T>
-inline T abs(T x){
-	return x < 0 ? -x : x;
-}
-
-bool decode_joystick_event(SDL_Event &event, std::vector<SDL_Joystick *> &joysticks){
+bool UserInput::decode_joystick_event(SDL_Event &event, std::vector<SDL_Joystick *> &joysticks){
 	if (event.type == SDL_JOYAXISMOTION){
 		int value = event.jaxis.value;
 		if (abs(value) < (1<<14))
@@ -86,6 +71,21 @@ bool decode_joystick_event(SDL_Event &event, std::vector<SDL_Joystick *> &joysti
 		event.key.keysym.sym = key;
 	}
 	return 1;
+}
+
+event_queue_t UserInput::get(){
+	event_queue_t ret;
+	SDL_Event event;
+	while (SDL_PollEvent(&event)){
+		this->transform_event(event);
+		ret.push_back(event);
+	}
+	return ret;
+}
+
+template <typename T>
+inline T abs(T x){
+	return x < 0 ? -x : x;
 }
 
 void UserInput::setup_joysticks(){

@@ -1,3 +1,10 @@
+#ifdef _MSC_VER
+#pragma once
+#endif
+
+#ifndef SIMPLETYPES_H
+#define SIMPLETYPES_H
+
 #include "config.h"
 #include <boost/cstdint.hpp>
 #include <boost/type_traits/make_signed.hpp>
@@ -7,3 +14,9 @@
 DECLARE_MACHINE_WORD(ARCH_NATURAL_BITNESS);
 
 typedef boost::make_signed<mword_t>::type smword_t;
+
+using boost::uint8_t;
+using boost::uint32_t;
+typedef uint8_t byte_t;
+
+#endif

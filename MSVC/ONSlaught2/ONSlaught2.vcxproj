@@ -149,13 +149,17 @@
   <ItemGroup>
     <ClInclude Include="../../src/Kernel.h" />
     <ClInclude Include="../../src/stdafx.h" />
-    <ClInclude Include="..\..\..\..\..\Cpp\ONSlaught2\ONSlaught2\src\config.h" />
-    <ClInclude Include="..\..\..\..\..\Cpp\ONSlaught2\ONSlaught2\src\Coroutines.h" />
-    <ClInclude Include="..\..\..\..\..\Cpp\ONSlaught2\ONSlaught2\src\ScriptInterpreter.h" />
-    <ClInclude Include="..\..\..\..\..\Cpp\ONSlaught2\ONSlaught2\src\SimpleTypes.h" />
-    <ClInclude Include="..\..\..\..\..\Cpp\ONSlaught2\ONSlaught2\src\Thread.h" />
-    <ClInclude Include="..\..\..\..\..\Cpp\ONSlaught2\ONSlaught2\src\UserInput.h" />
-    <ClInclude Include="..\..\..\..\..\Cpp\ONSlaught2\ONSlaught2\src\Video.h" />
+    <ClInclude Include="../../src/config.h" />
+    <ClInclude Include="../../src/Coroutines.h" />
+    <ClInclude Include="../../src/ScriptInterpreter.h" />
+    <ClInclude Include="../../src/SimpleTypes.h" />
+    <ClInclude Include="../../src/Thread.h" />
+    <ClInclude Include="../../src/UserInput.h" />
+    <ClInclude Include="../../src/Video.h" />
+    <ClInclude Include="..\..\..\..\..\Cpp\ONSlaught2\ONSlaught2\src\Util.h" />
+    <ClInclude Include="..\..\src\Font.h" />
+    <ClInclude Include="..\..\src\IO.h" />
+    <ClInclude Include="..\..\src\Math.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="../../src/ONSlaught2.cpp" />
@@ -165,12 +169,15 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\Cpp\ONSlaught2\ONSlaught2\src\Coroutines.cpp" />
-    <ClCompile Include="..\..\..\..\..\Cpp\ONSlaught2\ONSlaught2\src\Kernel.cpp" />
-    <ClCompile Include="..\..\..\..\..\Cpp\ONSlaught2\ONSlaught2\src\ScriptInterpreter.cpp" />
-    <ClCompile Include="..\..\..\..\..\Cpp\ONSlaught2\ONSlaught2\src\Thread.cpp" />
-    <ClCompile Include="..\..\..\..\..\Cpp\ONSlaught2\ONSlaught2\src\UserInput.cpp" />
-    <ClCompile Include="..\..\..\..\..\Cpp\ONSlaught2\ONSlaught2\src\Video.cpp" />
+    <ClCompile Include="../../src/Coroutines.cpp" />
+    <ClCompile Include="../../src/Kernel.cpp" />
+    <ClCompile Include="../../src/ScriptInterpreter.cpp" />
+    <ClCompile Include="../../src/Thread.cpp" />
+    <ClCompile Include="../../src/UserInput.cpp" />
+    <ClCompile Include="../../src/Video.cpp" />
+    <ClCompile Include="..\..\src\Font.cpp" />
+    <ClCompile Include="..\..\src\IO.cpp" />
+    <ClCompile Include="..\..\src\Math.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

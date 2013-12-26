@@ -31,20 +31,46 @@
 #pragma once
 #endif
 
-#ifndef VIDEO_H
-#define VIDEO_H
+#ifndef VideoDevice_H
+#define VideoDevice_H
 
 #include "Thread.h"
+#include "Math.h"
+#include "SimpleTypes.h"
+#include "IO.h"
 
 namespace ONSlaught{
 
-class Video{
+class VideoDevice;
+
+class Texture{
+	friend class MiniTexture;
+	bool good;
+	std::string name;
+	//io::Path path;
+	//texture_t tex;
+	Math::Vector2 size;
+	//bool load_texture(const io::Path &);
+	//bool load_texture(io::DataStream *);
+public:
+	//Testing: ---------------------------
+	std::vector<MiniTexture *> subtextures;
+	//------------------------------------
+	Texture(VideoDevice &dev,const std::string &name);
+	~Texture();
+	operator bool(){ return this->good; }
+	const Math::Vector2 &get_size(){
+		return this->size;
+	}
+};
+
+class VideoDevice{
 	unsigned width,
 		height;
 	Mutex draw_lock;
 public:
-	Video(unsigned width, unsigned height);
-	~Video();
+	VideoDevice(unsigned width, unsigned height);
+	~VideoDevice();
 	void draw();
 };
 

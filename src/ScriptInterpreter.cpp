@@ -31,3 +31,9 @@
 #ifndef PRECOMPILED_HEADERS_ARE_AVAILABLE
 #endif
 #include "ScriptInterpreter.h"
+
+using ONSlaught::ScriptInterpreter;
+
+void ScriptInterpreter::start(){
+	this->thread.start(thread_function, this);
+}

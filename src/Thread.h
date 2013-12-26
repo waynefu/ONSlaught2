@@ -68,7 +68,7 @@ public:
 struct EventImpl;
 
 class Event{
-	EventImpl *impl;
+	std::auto_ptr<EventImpl> impl;
 public:
 	Event();
 	~Event();
@@ -93,6 +93,25 @@ public:
 			this->function_finished_event.wait();
 	}
 };
+
+class Thread{
+#ifdef USE_BOOST_THREAD
+	std::auto_ptr<boost::thread> thread;
+#endif
+public:
+	typedef void (*thread_f)(void *);
+	~Thread(){
+		this->join();
+	}
+	void start(thread_f function, void *user_data);
+	void join();
+};
+
+#ifdef USE_BOOST_ATOMIC
+#define Atomic boost::atomic
+#else
+#error TODO: Implement me.
+#endif
 
 }
 

@@ -21,25 +21,37 @@
     <ClInclude Include="../../src/stdafx.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\..\Cpp\ONSlaught2\ONSlaught2\src\Video.h">
+    <ClInclude Include="../../src/config.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\..\Cpp\ONSlaught2\ONSlaught2\src\Thread.h">
+    <ClInclude Include="../../src/Coroutines.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\..\Cpp\ONSlaught2\ONSlaught2\src\config.h">
+    <ClInclude Include="../../src/ScriptInterpreter.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\..\Cpp\ONSlaught2\ONSlaught2\src\SimpleTypes.h">
+    <ClInclude Include="../../src/SimpleTypes.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\..\Cpp\ONSlaught2\ONSlaught2\src\Coroutines.h">
+    <ClInclude Include="../../src/Thread.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\..\Cpp\ONSlaught2\ONSlaught2\src\ScriptInterpreter.h">
+    <ClInclude Include="../../src/UserInput.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\..\Cpp\ONSlaught2\ONSlaught2\src\UserInput.h">
+    <ClInclude Include="../../src/Video.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Math.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Cpp\ONSlaught2\ONSlaught2\src\Util.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\IO.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Font.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -50,22 +62,31 @@
     <ClCompile Include="../../src/stdafx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\Cpp\ONSlaught2\ONSlaught2\src\Kernel.cpp">
+    <ClCompile Include="../../src/Coroutines.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\Cpp\ONSlaught2\ONSlaught2\src\Video.cpp">
+    <ClCompile Include="../../src/Kernel.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\Cpp\ONSlaught2\ONSlaught2\src\Thread.cpp">
+    <ClCompile Include="../../src/ScriptInterpreter.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\Cpp\ONSlaught2\ONSlaught2\src\Coroutines.cpp">
+    <ClCompile Include="../../src/Thread.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\Cpp\ONSlaught2\ONSlaught2\src\ScriptInterpreter.cpp">
+    <ClCompile Include="../../src/UserInput.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\Cpp\ONSlaught2\ONSlaught2\src\UserInput.cpp">
+    <ClCompile Include="../../src/Video.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Math.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\IO.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Font.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

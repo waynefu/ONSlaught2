@@ -36,6 +36,7 @@
 
 using ONSlaught::Event;
 using ONSlaught::EventImpl;
+using ONSlaught::Thread;
 
 #if defined USE_BOOST_MUTEX
 template <typename T>
@@ -70,11 +71,10 @@ struct EventImpl{
 };
 
 Event::Event(){
-	this->impl = new EventImpl;
+	this->impl.reset(new EventImpl);
 }
 
 Event::~Event(){
-	delete this->impl;
 }
 
 void Event::set(){
@@ -84,4 +84,14 @@ void Event::set(){
 void Event::wait(){
 	this->impl->event.wait();
 }
+
+void Thread::start(thread_f function, void *user_data){
+	this->thread.reset(new boost::thread(function, user_data));
+}
+
+void Thread::join(){
+	if (this->thread.get())
+		this->thread->join();
+}
+
 #endif

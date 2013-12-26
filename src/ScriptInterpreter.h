@@ -34,11 +34,23 @@
 #ifndef SCRIPTINTERPRETER_H
 #define SCRIPTINTERPRETER_H
 
+#include "Thread.h"
+
+namespace ONSlaught{
+
 class ScriptInterpreter{
+	Thread thread;
+	static void thread_function(void *user_data){
+		auto _this = (ScriptInterpreter *)user_data;
+		while (_this->intepret_next_line());
+	}
 public:
 	ScriptInterpreter();
 	~ScriptInterpreter();
 	void start();
+	bool intepret_next_line();
 };
+
+}
 
 #endif

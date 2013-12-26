@@ -35,10 +35,20 @@
 #include "Kernel.h"
 
 using ONSlaught::Kernel;
+using ONSlaught::event_queue_t;
 
 std::auto_ptr<ONSlaught::Kernel> ONSlaught::global_kernel;
 
-Kernel::Kernel(){
+Kernel::Kernel(): skip_state(0){
+}
+
+Kernel::~Kernel(){
+	this->interpreter.release();
+	this->audio.release();
+	this->input.release();
+	this->VideoDevice.release();
+	for (auto p : this->actions)
+		delete p;
 }
 
 void Kernel::perform_actions(){
@@ -60,11 +70,39 @@ void Kernel::run_delegates(const ONSlaught::event_queue_t &input){
 	}
 }
 
+void Kernel::process_input(event_queue_t &input){
+	for (auto &event : input){
+		switch (event.type){
+			case SDL_QUIT:
+				this->request_stop();
+				return;
+			case SDL_KEYDOWN:
+				{
+					switch (event.key.keysym.sym){
+						case SDLK_LCTRL:
+						case SDLK_RCTRL:
+							this->set_skip_state(1);
+							break;
+						case SDLK_PERIOD:
+							this->flip_skip_state();
+							break;
+					}
+				}
+				break;
+			case SDL_KEYUP:
+				if (event.key.keysym.sym == SDLK_LCTRL || event.key.keysym.sym == SDLK_RCTRL)
+					this->set_skip_state(0);
+				break;
+		}
+	}
+}
+
 void Kernel::run(){
-	while (1){
+	while (!this->get_stop()){
 		this->perform_actions();
-		this->run_delegates(this->input->get());
-		this->video->draw();
+		auto input = this->input->get();
+		this->run_delegates(input);
+		this->VideoDevice->draw();
 	}
 }
 

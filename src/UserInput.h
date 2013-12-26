@@ -40,14 +40,18 @@ typedef std::vector<SDL_Event> event_queue_t;
 
 class UserInput{
 	std::vector<SDL_Joystick *> joysticks;
-	void transform_event(SDL_Event &e);
+	static bool decode_joystick_event(SDL_Event &event, std::vector<SDL_Joystick *> &joysticks);
+	void transform_event(SDL_Event &e){
+		if (e.type == SDL_JOYAXISMOTION || e.type == SDL_JOYBUTTONDOWN)
+			decode_joystick_event(e, this->joysticks);
+	}
+	bool decode_joystick_event(SDL_Event &e);
 public:
 	UserInput();
 	~UserInput();
 	void setup_joysticks();
 	void free_joysticks();
 	event_queue_t get();
-	bool get_skip_state();
 };
 
 }

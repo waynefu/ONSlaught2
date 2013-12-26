@@ -33,16 +33,15 @@
 #include "Video.h"
 #include "Thread.h"
 
-
-ONSlaught::Video::Video(unsigned width, unsigned height){
+ONSlaught::VideoDevice::VideoDevice(unsigned width, unsigned height){
 	//TODO
 }
 
-ONSlaught::Video::~Video(){
+ONSlaught::VideoDevice::~VideoDevice(){
 	//TODO
 }
 
-void ONSlaught::Video::draw(){
+void ONSlaught::VideoDevice::draw(){
 	AutoMutex am(this->draw_lock);
 	//TODO
 }

@@ -39,7 +39,7 @@
 
 namespace ONSlaught{
 
-class Video;
+class VideoDevice;
 class Audio;
 class UserInput;
 class ScriptInterpreter;
@@ -59,7 +59,7 @@ public:
 };
 
 class Kernel{
-	std::auto_ptr<Video> video;
+	std::auto_ptr<VideoDevice> VideoDevice;
 	std::auto_ptr<Audio> audio;
 	std::auto_ptr<UserInput> input;
 	std::auto_ptr<ScriptInterpreter> interpreter;
@@ -67,13 +67,30 @@ class Kernel{
 	std::deque<CrossThreadAction *> actions;
 	Mutex actions_mutex,
 		delegates_mutex;
+	Atomic<bool> skip_state,
+		stop;
 
 	void perform_actions();
 	void run_delegates(const event_queue_t &);
+	void process_input(event_queue_t &input);
+	bool get_stop(){
+		return this->stop.load(boost::memory_order_relaxed);
+	}
 public:
 	Kernel();
+	~Kernel();
 	void run();
 	void schedule(CrossThreadAction *);
+	void set_skip_state(bool new_state){
+		this->skip_state.store(new_state, boost::memory_order_relaxed);
+	}
+	void flip_skip_state(){
+		bool old = this->skip_state.load(boost::memory_order_relaxed);
+		this->set_skip_state(!old);
+	}
+	void request_stop(){
+		this->stop.store(1, boost::memory_order_relaxed);
+	}
 };
 
 extern std::auto_ptr<Kernel> global_kernel;
